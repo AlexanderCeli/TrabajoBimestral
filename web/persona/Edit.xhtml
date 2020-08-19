@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaEditDlg" widgetVar="PersonaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPersonaTitle}">
+            <h:form id="PersonaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{personaController.selected.cedula}" title="#{bundle.EditPersonaTitle_cedula}" required="true" requiredMessage="#{bundle.EditPersonaRequiredMessage_cedula}"/>
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{personaController.selected.nombre}" title="#{bundle.EditPersonaTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{personaController.selected.direccion}" title="#{bundle.EditPersonaTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_coreo}" for="coreo" />
+                        <p:inputText id="coreo" value="#{personaController.selected.coreo}" title="#{bundle.EditPersonaTitle_coreo}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{personaController.selected.telefono}" title="#{bundle.EditPersonaTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_ciudad}" for="ciudad" />
+                        <p:inputText id="ciudad" value="#{personaController.selected.ciudad}" title="#{bundle.EditPersonaTitle_ciudad}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_edad}" for="edad" />
+                        <p:inputText id="edad" value="#{personaController.selected.edad}" title="#{bundle.EditPersonaTitle_edad}" />
+                        <p:outputLabel value="#{bundle.EditPersonaLabel_preferencia}" for="preferencia" />
+                        <p:inputText id="preferencia" value="#{personaController.selected.preferencia}" title="#{bundle.EditPersonaTitle_preferencia}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personaController.update}" value="#{bundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PersonaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

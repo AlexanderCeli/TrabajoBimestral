@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Joyeria</title>
+    </h:head>
+    <h:body>
+        <div id="top">
+            <h:form>  
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:submenu label="File" icon="pi pi-file">
+                        <p:submenu label="New" icon="pi pi-briefcase">
+                            <p:menuitem value="Project" url="#" />
+                            <p:menuitem value="Other" url="#" />
+                        </p:submenu>
+                        <p:menuitem value="Open" url="#" />
+                        <p:separator />
+                        <p:menuitem value="Quit" url="#" />
+                    </p:submenu>
+
+                    <p:submenu label="Edit" icon="pi pi-pencil">
+                        <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+                        <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                    </p:submenu>
+
+                    <p:submenu label="Help" icon="pi pi-question">
+                        <p:menuitem value="Contents" url="#" />
+                        <p:submenu label="Search" icon="pi pi-search">
+                            <p:submenu label="Text">
+                                <p:menuitem value="Workspace" url="#" />
+                            </p:submenu>
+                            <p:menuitem value="File" url="#" />
+                        </p:submenu>
+                    </p:submenu>
+                    <p:submenu label="Actions" icon="pi pi-cog">
+                        <p:submenu label="Ajax" icon="pi pi-refresh">
+                            <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
+                            <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh" update="messages"/>
+                        </p:submenu>
+                        <p:submenu label="Non-Ajax" icon="pi pi-clone">
+                            <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
+
+                    <f:facet name="options">
+                        <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                        <p:commandButton type="button" value="Logout" icon="pi pi-home" />
+                    </f:facet>
+                </p:menubar>
+            </h:form>
+        </div>
+
+
+        <div>
+            <div id="left">
+                <p:growl id="messages" showDetail="true" />
+
+                Solo archivo<br />
+                <h:form enctype="multipart/form-data">        
+                    <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/>
+                    <br />
+                    <p:commandButton value="Submit" ajax="false" action="#{fileUploadView.upload}" disabled="true" />
+                </h:form>
+
+                <br />
+                <br />
+                Múltiples archivos; NOTA: en el modo simple, puede obtener todos los archivos con una sola solicitud!<br />
+                <h:form enctype="multipart/form-data">
+                    <p:fileUpload value="#{fileUploadView.files}" mode="simple" skinSimple="true" multiple="true" />
+                    <br />
+                    <p:commandButton value="Submit" ajax="false" action="#{fileUploadView.uploadMultiple}" disabled="true" />
+                </h:form>
+            </div>
+            <div>
+                <div id="right">
+                    <style type="text/css">
+                        .ui-stack {
+                            z-index: 1000;
+                        }
+                    </style>
+
+                    <p:stack icon="/resources/demo/images/dock/stack.png" expanded="false">
+                        <p:menuitem value="Home" icon= "resources/css/img/—Pngtree—home icon_4422686.png" url="#"/>
+                        <p:menuitem value="Music" icon="resources/css/img/—Pngtree—music note icon_3995408.png" url="#"/>
+                        <p:menuitem value="Video" icon="/resources/demo/images/dock/video.png" url="#"/>
+                        <p:menuitem value="Email" icon="/resources/demo/images/dock/email.png" url="#"/>
+                        <p:menuitem value="Portfolio" icon="/resources/demo/images/dock/portfolio.png" url="#"/>
+                    </p:stack>
+                </div>
+
+                <div id="center">
+                    <p:imageCompare leftImage="resources/css/img/images.jpg"
+                                    rightImage="resources/css/img/—Pngtree—home icon_4422686.png"
+                                    width="450" height="435"/>
+                </div>
+            </div>
+        </div>        
+    </h:body>
+
+</html>
